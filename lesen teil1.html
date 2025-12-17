@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÖSD Zertifikat A1 - Lesen Aufgaben 1 & 2</title>
+    <style>
+        :root {
+            --primary: #2f2a24;
+            --accent: #8a7c6a;
+            --success: #2f7b3a;
+            --error: #b24a3a;
+            --bg: #f6f1e7;
+            --card-bg: #fdfbf7;
+        }
+
+        body {
+            font-family: "Georgia", "Times New Roman", serif;
+            background: var(--bg);
+            color: var(--primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
+
+        header {
+            background: linear-gradient(180deg, #fdfbf7 0%, #f3ecdf 100%);
+            color: var(--primary);
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid #d8cdbd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin: 0.35rem 0 0;
+            font-size: 0.9rem;
+            color: #4d4336;
+        }
+
+        /* Timer Styles */
+        .timer-box {
+            background: #3f382f;
+            color: #fffef9;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timer-box.warning {
+            background: #b24a3a;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .timer-icon {
+            font-size: 1.2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.2rem 1rem 2rem;
+            background: #fffef9;
+            border-left: 1px solid #e0d6c8;
+            border-right: 1px solid #e0d6c8;
+        }
+
+        /* --- Questions Section --- */
+        .section-title {
+            border-bottom: 1px solid #c9beaf;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            margin-top: 2rem;
+            color: #3b3329;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: none;
+            letter-spacing: 0.05em;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 6px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.85rem;
+            border: 1px solid #d8cdbd;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 0.98rem;
+        }
+
+        .question-text span {
+            background: #3f382f;
+            color: #fffef9 !important;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .question-input {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f6f0e5;
+            padding: 0.55rem 0.75rem;
+            border-radius: 5px;
+            border: 1px solid #d8cdbd;
+            font-size: 0.95rem;
+        }
+
+        select {
+            padding: 7px 12px;
+            border: 1px solid #b6aa98;
+            border-radius: 4px;
+            font-size: 1rem;
+            background: #fffdf8;
+            min-width: 120px;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #8a7c6a 50%),
+                              linear-gradient(135deg, #8a7c6a 50%, transparent 50%);
+            background-position: calc(100% - 16px) calc(50% - 4px), calc(100% - 10px) calc(50% - 4px);
+            background-size: 6px 6px;
+            background-repeat: no-repeat;
+        }
+
+        /* --- Ads Grid Section --- */
+        .ads-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.9rem;
+        }
+
+        .ad-card {
+            background: var(--card-bg);
+            border: 1px solid #d5cabb;
+            border-radius: 6px;
+            padding: 1.15rem 1rem 0.95rem 1.15rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: #2f2a24;
+            box-sizing: border-box;
+            overflow: visible;
+        }
+
+        .ad-number {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            background: #3f382f;
+            color: #fffef9;
+            width: 30px;
+            height: 30px;
+            border-radius: 0 0 6px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-right: 1px solid #d5cabb;
+            border-bottom: 1px solid #d5cabb;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+        }
+
+        .ad-title {
+            font-weight: 700;
+            margin-bottom: 0.45rem;
+            display: block;
+            color: #2f2a24;
+            font-size: 1rem;
+            margin-left: 2px;
+        }
+
+        .ad-content ul {
+            padding-left: 1.2rem;
+            margin: 0.35rem 0;
+        }
+        
+        .ad-content li {
+            margin-bottom: 0.2rem;
+        }
+
+        .ad-contact {
+            margin-top: 0.6rem;
+            font-size: 0.82rem;
+            color: #5b5144;
+            font-style: italic;
+        }
+
+        /* Styles for specific ads based on image */
+        .ad-style-dashed { border: 1px dashed #8f8375; }
+        .ad-style-round { border-radius: 10px; border: 1px solid #bbaea0; }
+        .ad-style-simple { border: 1px solid #3f382f; }
+
+        /* --- Footer / FAB --- */
+        .fab-container {
+            position: fixed;
+            bottom: 14px;
+            right: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        button#check-btn {
+            background-color: #3f382f;
+            color: #fffef9;
+            border: 1px solid #2f2a24;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            box-shadow: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 380px;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        button#check-btn:active {
+            transform: scale(0.985);
+            background-color: #2f2a24;
+        }
+
+        /* --- Validation Styles --- */
+        .correct {
+            border-color: var(--success) !important;
+            background-color: rgba(39, 174, 96, 0.1) !important;
+        }
+        
+        .incorrect {
+            border-color: var(--error) !important;
+            background-color: rgba(192, 57, 43, 0.1) !important;
+        }
+
+        .feedback-msg {
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .text-correct { color: var(--success); }
+        .text-error { color: var(--error); }
+
+        /* --- Teil 2 & 3 Styles --- */
+        .ad-meta {
+            font-size: 0.85rem;
+            color: #4d4336;
+            margin-top: 0.35rem;
+            line-height: 1.4;
+        }
+
+        .yn-card {
+            background: var(--card-bg);
+            border: 1px solid #d8cdbd;
+            border-radius: 6px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .yn-question {
+            font-weight: 600;
+            margin-bottom: 0.65rem;
+        }
+
+        .yn-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .yn-option {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.45rem 0.65rem;
+            background: #f6f0e5;
+            border: 1px solid #d8cdbd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .yn-option input {
+            accent-color: #3f382f;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 640px) {
+            .container { padding: 1rem 0.85rem 2rem; }
+            .question-input { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+            .yn-options { flex-wrap: wrap; }
+            .yn-option { padding: 0.4rem 0.55rem; }
+            .ad-card { padding: 1rem 0.9rem; }
+            .fab-container { bottom: 10px; }
+            button#check-btn { max-width: 100%; }
+        }
+
+        .primary-btn {
+            background-color: #3f382f;
+            color: #fffef9;
+            border: 1px solid #2f2a24;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .primary-btn:active {
+            transform: scale(0.985);
+            background-color: #2f2a24;
+        }
+
+        .iut-tag {
+            text-align: right;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .image-card {
+            background: var(--card-bg);
+            border: 1px solid #d5cabb;
+            border-radius: 6px;
+            padding: 0.65rem;
+            text-align: center;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 0.4rem;
+            border-radius: 4px;
+        }
+
+        .image-label {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Beautiful text box for Teil 3 */
+        .text-box {
+            background: linear-gradient(135deg, #fdfbf7 60%, #f3ecdf 100%);
+            border: 2px solid #c9beaf;
+            border-radius: 14px;
+            padding: 1.1rem 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 16px rgba(60,50,40,0.07);
+            position: relative;
+        }
+
+        .text-box-badge {
+            position: absolute;
+            top: -14px;
+            left: 16px;
+            background: #3f382f;
+            color: #fffef9;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 4px 14px;
+            border-radius: 8px;
+            letter-spacing: 0.06em;
+        }
+
+        .text-box-content {
+            margin-top: 0.5rem;
+            font-size: 0.97rem;
+            line-height: 1.55;
+            color: #2f2a24;
+        }
+
+        .text-box-select {
+            margin-top: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Modal for results */
+        #result-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fffdf8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #d8cdbd;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+            text-align: center;
+            z-index: 2000;
+            width: 80%;
+            max-width: 320px;
+        }
+        #modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(30,25,20,0.35);
+            z-index: 1500;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <h1>Lesen Aufgabe 1</h1>
+        <p>Finden Sie die passende Anzeige (1-6) für jede Situation (A-E).</p>
+    </div>
+    <div class="timer-box" id="timer-box">
+        <span class="timer-icon">⏱</span>
+        <span id="timer-display">25:00</span>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="section-title">Situationen</div>
+    <div id="questions-container">
+        </div>
+
+    <div class="section-title">Anzeigen (Ads)</div>
+    <div class="ads-grid">
+        
+        <div class="ad-card ad-style-simple">
+            <div class="ad-number">1</div>
+            <span class="ad-title">Sekretärin/Sekretär gesucht</span>
+            <div class="ad-content">
+                Internationale Firma sucht Sekretärin/Sekretär mit Berufserfahrung (Vollzeit).
+                <br><strong>Aufgaben:</strong>
+                <ul>
+                    <li>telefonische Kundenbetreuung</li>
+                    <li>organisatorische Tätigkeiten</li>
+                </ul>
+                <div class="ad-contact">Bewerbungen an: info@personalvermittlung-holzer.de</div>
+            </div>
+        </div>
+
+        <div class="ad-card ad-style-round">
+            <div class="ad-number">2</div>
+            <span class="ad-title">Fitnesscenter Olymp</span>
+            <div class="ad-content">
+                <strong>Unser Angebot</strong>
+                <ul>
+                    <li>120 Geräte für Kraft- und Fitnesstraining</li>
+                    <li>Rückengymnastik</li>
+                    <li>Beratung durch geprüfte Trainer</li>
+                </ul>
+                <div class="ad-contact">Burggasse 10, 1070 Wien<br>täglich 10–22 Uhr</div>
+            </div>
+        </div>
+
+        <div class="ad-card ad-style-dashed">
+            <div class="ad-number">3</div>
+            <span class="ad-title">Buchhandlung Steiner</span>
+            <div class="ad-content">
+                <u>Bücher zum halben Preis</u>
+                <ul>
+                    <li>Richtig telefonieren – Gesprächstraining für Sekretärinnen</li>
+                    <li>Gesund essen im Büro: 50 Kochideen</li>
+                    <li>100 Jahre Sportfotografie</li>
+                    <li>Diverse Kinderbücher</li>
+                </ul>
+                <div class="ad-contact">Angebot gültig bis Ende Mai</div>
+            </div>
+        </div>
+
+        <div class="ad-card ad-style-round">
+            <div class="ad-number">4</div>
+            <span class="ad-title">Die ganze Welt um wenig Geld!</span>
+            <div class="ad-content">
+                Günstige Auslandsanrufe ab 1,9 Cent/Minute
+                <br><br>
+                weltweitanrufen.de bietet Ihnen die besten Tarife für Anrufe in Mobilnetze und ins ausländische Festnetz.
+                <div class="ad-contact">www.weltweitanrufen.de</div>
+            </div>
+        </div>
+
+        <div class="ad-card ad-style-dashed">
+            <div class="ad-number">5</div>
+            <div class="ad-content">
+                <p>Sie suchen jemanden, der Ihre Wäsche wäscht und bügelt?</p>
+                <p>Sie brauchen jemanden, der beim Saubermachen oder bei der Gartenarbeit hilft? Kein Problem!</p>
+                <div class="ad-contact">Rufen Sie mich an:<br>Petra Maier, Tel. 0676 55 68 987</div>
+            </div>
+        </div>
+
+        <div class="ad-card ad-style-simple">
+            <div class="ad-number">6</div>
+            <span class="ad-title">Feinkost Klement</span>
+            <div class="ad-content">
+                In unserem Delikatessengeschäft bieten wir Ihnen:
+                <ul>
+                    <li>hausgemachte Salate</li>
+                    <li>Brötchen mit Ei- und Curryaufstrich</li>
+                    <li>Schinken und Käse aus der Region</li>
+                </ul>
+                <div class="ad-contact">Petersgasse 8, 4051 Basel • Mo-Sa: 9–18 Uhr</div>
+            </div>
+        </div>
+
+    </div>
+    <div style="height: 40px;"></div>
+    <div class="iut-tag">iut</div>
+    </div>
+
+<div class="container" id="teil2-container">
+    <header style="border: none; padding: 0; margin-bottom: 1rem; background: transparent;">
+        <h1>Lesen Aufgabe 2</h1>
+        <p>Sie lesen drei Anzeigen. Beantworten Sie je zwei Fragen mit JA oder NEIN.</p>
+    </header>
+
+    <div class="section-title">Anzeigen & Fragen</div>
+    <div class="ads-grid" id="teil2-pairs"></div>
+</div>
+
+<div class="container" id="teil3-container">
+    <header style="border: none; padding: 0; margin-bottom: 1rem; background: transparent;">
+        <h1>Lesen Aufgabe 3</h1>
+        <p>Ordnen Sie die Bilder (1-6) den Texten A-E zu. Ein Bild bleibt übrig.</p>
+    </header>
+
+    <div class="section-title">Bilder</div>
+    <div class="image-row">
+        <div class="image-card"><img src="il/1.jpg" alt="Bild 1"><div class="image-label">Bild 1</div></div>
+        <div class="image-card"><img src="il/2.jpg" alt="Bild 2"><div class="image-label">Bild 2</div></div>
+        <div class="image-card"><img src="il/3.jpg" alt="Bild 3"><div class="image-label">Bild 3</div></div>
+        <div class="image-card"><img src="il/4.jpg" alt="Bild 4"><div class="image-label">Bild 4</div></div>
+        <div class="image-card"><img src="il/5.jpg" alt="Bild 5"><div class="image-label">Bild 5</div></div>
+        <div class="image-card"><img src="il/6.jpg" alt="Bild 6"><div class="image-label">Bild 6</div></div>
+    </div>
+
+    <div class="section-title" style="margin-top:1.5rem;">Texte</div>
+    <div id="teil3-questions"></div>
+</div>
+
+<div class="container" id="actions-container" style="padding-top: 0;">
+    <div style="display:flex; flex-direction:column; gap: 0.6rem;">
+        <button class="primary-btn" id="check-btn-all" onclick="checkAll()">Antworten prüfen</button>
+    </div>
+</div>
+
+<div id="modal-overlay" onclick="closeModal()"></div>
+<div id="result-modal">
+    <h2 id="modal-title">Ergebnis</h2>
+    <p id="modal-score" style="font-size: 1.5rem; font-weight: bold;"></p>
+    <button onclick="closeModal()" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; margin-top: 10px;">Schließen</button>
+</div>
+
+<script>
+    // Google Apps Script Web App URL (ersetzen Sie den Platzhalter durch Ihre URL)
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwwYF0tzwZ7Da1TnlKDp_Y24-2TIc-rqgZSiHDwqc2O8tN4uu7EgYa9tTlSX63lFiVeCA/exec';
+    const EXAM_NAME = 'Lesen Teil 1';
+    const EXAM_NAME_PART2 = 'Lesen Teil 2';
+    const EXAM_NAME_PART3 = 'Lesen Teil 3';
+
+    // Timer variables
+    let timeRemaining = 30; // 30 seconds for testing (change to 25 * 60 for production)
+    let timerInterval = null;
+
+    function startTimer() {
+        const timerDisplay = document.getElementById('timer-display');
+        const timerBox = document.getElementById('timer-box');
+        
+        timerInterval = setInterval(() => {
+            timeRemaining--;
+            
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Add warning class when less than 5 minutes
+            if (timeRemaining <= 5 * 60) {
+                timerBox.classList.add('warning');
+            }
+            
+            // Time's up - auto submit
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                timerDisplay.textContent = '00:00';
+                autoSubmitExam();
+            }
+        }, 1000);
+    }
+
+    function autoSubmitExam() {
+        // Disable further interaction
+        document.querySelectorAll('select, input').forEach(el => el.setAttribute('disabled', 'true'));
+        document.getElementById('check-btn-all')?.setAttribute('disabled', 'true');
+        
+        // Calculate scores with whatever answers are completed
+        forceSubmitWithCurrentAnswers();
+    }
+
+    function forceSubmitWithCurrentAnswers() {
+        // Teil 1
+        let score1 = 0;
+        questions.forEach(q => {
+            const select = document.getElementById(`select-${q.id}`);
+            const userVal = parseInt(select.value);
+            if (userVal === q.correct) score1++;
+        });
+
+        // Teil 2
+        let score2 = 0;
+        teil2Questions.forEach(q => {
+            const selected = document.querySelector(`input[name="yn-${q.id}"]:checked`);
+            if (selected) {
+                const userVal = selected.value === 'true';
+                if (userVal === q.correct) score2++;
+            }
+        });
+
+        // Teil 3
+        let score3 = 0;
+        teil3Texts.forEach(t => {
+            const select = document.getElementById(`teil3-select-${t.id}`);
+            const userVal = parseInt(select.value);
+            if (userVal === t.correct) score3++;
+        });
+
+        // Scoring tables
+        const score5Table = [0, 2, 4, 6, 8, 10];
+        const score6Table = [0, 0, 2, 4, 6, 8, 10];
+
+        const points1 = score5Table[score1] || 0;
+        const points2 = score6Table[score2] || 0;
+        const points3 = score5Table[score3] || 0;
+        const totalScore = points1 + points2 + points3;
+
+        // Lock everything
+        document.querySelectorAll('#questions-container select').forEach(sel => sel.setAttribute('disabled', 'true'));
+        document.querySelectorAll('input[type="radio"]').forEach(r => r.setAttribute('disabled', 'true'));
+        document.querySelectorAll('.teil3-text-box select').forEach(sel => sel.setAttribute('disabled', 'true'));
+
+        // Send results
+        const participantName = localStorage.getItem('studentName') || '';
+        const participantEmail = localStorage.getItem('studentEmail') || '';
+        
+        console.log('Auto-submit: Name=' + participantName + ', Email=' + participantEmail + ', Score=' + totalScore);
+        
+        if (!hasSubmitted) {
+            hasSubmitted = true;
+            const payload = {
+                timestamp: new Date().toISOString(),
+                name: participantName || 'Timer-Auto',
+                email: participantEmail || 'timer@auto.submit',
+                score: totalScore
+            };
+            
+            sendResultToSheet(payload);
+        }
+
+        showResultModal(totalScore, 30, 'Lesen', true); // skipSend = true to avoid duplicate
+    }
+
+    // Start timer when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+        startTimer();
+    });
+
+    // Data Structure for Questions (Teil 1 - Situationen)
+    const questions = [
+        {
+            id: 'A',
+            text: "Sie haben viele Freunde in anderen Ländern und möchten billig mit ihnen telefonieren.",
+            correct: 4
+        },
+        {
+            id: 'B',
+            text: "Sie sollen für ein Fest etwas zum Essen mitbringen. Sie haben keine Zeit zum Kochen.",
+            correct: 6
+        },
+        {
+            id: 'C',
+            text: "Sie suchen einen Job. Sie wollen in einem Büro arbeiten.",
+            correct: 1
+        },
+        {
+            id: 'D',
+            text: "Sie haben eine große Wohnung. Sie brauchen Hilfe bei der Hausarbeit.",
+            correct: 5
+        },
+        {
+            id: 'E',
+            text: "Sie arbeiten viel am Computer. In Ihrer Freizeit möchten Sie Sport machen.",
+            correct: 2
+        }
+    ];
+
+    // Anzeigen (Teil 2)
+    const teil2Ads = [
+        {
+            number: 1,
+            title: 'Schönes-Wochenende-Ticket',
+            questionIds: [1, 2],
+            bullet: [
+                'gültig ab Samstag 0 Uhr bis Montag 3 Uhr für Reisen in Deutschland',
+                'für Gruppen bis zu fünf Personen und für Einzelreisende'
+            ],
+            price: 'Preis: 39 Euro im Internet, 41 Euro im Reisezentrum am Bahnhof',
+            footer: 'www.bahn.de/angebote'
+        },
+        {
+            number: 2,
+            title: 'Lesen im Park',
+            questionIds: [3, 4],
+            text: 'Im Sommer gibt es in Grazer Parks wieder Bücherkisten mit vielen Kinderbüchern – zum Lesen vor Ort oder zum Mit-nach-Hause-Nehmen. Weitere Aktivitäten: Bastel- und Malgruppen; Papier und Stifte haben wir für dich.',
+            footer: 'www.lesen-im-park.at'
+        },
+        {
+            number: 3,
+            title: '3-Zimmer-Wohnung',
+            questionIds: [5, 6],
+            text: 'Neu renovierte Wohnung (63 m²) ab 1. August zu vermieten. Gesamtmiete: CHF 1.200,--\n\nKeine telefonische Auskunft, bitte per E-Mail: info@immobilien-heiss.ch\n\nTermine zur Wohnungsbesichtigung: 15. Juli, 11.00 Uhr / 18. Juli, 15.00 Uhr'
+        }
+    ];
+
+    // Fragen (Teil 2 - Ja/Nein)
+    const teil2Questions = [
+        { id: 1, text: 'Kann man am Freitagabend mit dem Ticket fahren?', correct: false },
+        { id: 2, text: 'Kostet das Ticket beim Kauf am Bahnhof mehr?', correct: true },
+        { id: 3, text: 'Darf man die Bücher nur im Park lesen?', correct: false },
+        { id: 4, text: 'Müssen die Kinder Papier und Stifte mitbringen?', correct: false },
+        { id: 5, text: 'Kann man telefonisch Informationen bekommen?', correct: false },
+        { id: 6, text: 'Kann man die Wohnung am Vormittag sehen?', correct: true }
+    ];
+
+    // Teil 3 - Bildzuordnung
+    const teil3Texts = [
+        { id: 'A', text: '<strong>Liebe Besucherinnen und Besucher!</strong><br>Im Krankenhaus ist das Telefonieren mit Handy verboten.<br>Bitte schalten Sie Ihr Handy während Ihres Besuchs bei uns aus.', correct: 5 },
+        { id: 'B', text: '<strong>Gasthaus Neuwirth</strong><br>leichte regionale Küche<br>frische Salate vom Buffet<br>günstige Mittagsmenüs<br>Mo–Sa: 9–22 Uhr<br>Sonntag Ruhetag', correct: 4 },
+        { id: 'C', text: '<strong>Liebe Kolleginnen und Kollegen!</strong><br>In den Büroräumen ist das Rauchen verboten. Bitte nützen Sie die Raucherzonen im Erdgeschoss.', correct: 1 },
+        { id: 'D', text: '<strong>Liebe Hundebesitzer!</strong><br>Wir bitten Sie im Interesse aller Parkbenützer Ihren Hund an die Leine zu nehmen.', correct: 6 },
+        { id: 'E', text: '<strong>Der Flughafen-Bus</strong><br>bringt Sie schnell und bequem ins Stadtzentrum.<br>Nützen Sie das Angebot!<br>Fahrplanauskünfte am Flughafen Graz:<br>+43 (316) 2902 172', correct: 3 }
+    ];
+
+    const questionsContainer = document.getElementById('questions-container');
+    const teil2PairsContainer = document.getElementById('teil2-pairs');
+    const teil3QuestionsContainer = document.getElementById('teil3-questions');
+
+    // Lese gespeicherte Teilnehmendendaten
+    const storedName = localStorage.getItem('studentName') || '';
+    const storedEmail = localStorage.getItem('studentEmail') || '';
+
+    // Generate Question HTML dynamically (Teil 1)
+    questions.forEach(q => {
+        const div = document.createElement('div');
+        div.className = 'question-card';
+        div.innerHTML = `
+            <div class="question-text">
+                <span style="background:var(--primary); color:white; padding: 2px 8px; border-radius: 4px; margin-right: 5px;">${q.id}</span>
+                ${q.text}
+            </div>
+            <div class="question-input" id="input-box-${q.id}">
+                <label>Anzeige Nr.:</label>
+                <div style="display:flex; align-items:center;">
+                    <select id="select-${q.id}">
+                        <option value="">- ? -</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <span id="feedback-${q.id}" class="feedback-msg"></span>
+                </div>
+            </div>
+        `;
+        questionsContainer.appendChild(div);
+    });
+
+    // Render Teil 2 Ads with their questions grouped nearby
+    if (teil2PairsContainer) {
+        teil2Ads.forEach(ad => {
+            const card = document.createElement('div');
+            card.className = 'ad-card ad-style-round';
+            let body = '';
+
+            if (ad.bullet) {
+                const listItems = ad.bullet.map(item => `<li>${item}</li>`).join('');
+                body = `
+                    <ul>
+                        ${listItems}
+                    </ul>
+                    <div class="ad-meta">${ad.price || ''}</div>
+                `;
+            } else {
+                body = `<div class="ad-meta">${ad.text.replace(/\n/g, '<br>')}</div>`;
+            }
+
+            const questionsHtml = (ad.questionIds || []).map(qId => {
+                const q = teil2Questions.find(item => item.id === qId);
+                if (!q) return '';
+                return `
+                    <div class="yn-card" id="yn-card-${q.id}">
+                        <div class="yn-question">${q.id}. ${q.text}</div>
+                        <div class="yn-options">
+                            <label class="yn-option"><input type="radio" name="yn-${q.id}" value="true"> JA</label>
+                            <label class="yn-option"><input type="radio" name="yn-${q.id}" value="false"> NEIN</label>
+                            <span id="yn-feedback-${q.id}" class="feedback-msg"></span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            card.innerHTML = `
+                <div class="ad-number">${ad.number}</div>
+                <span class="ad-title">${ad.title}</span>
+                <div class="ad-content">${body}</div>
+                ${ad.footer ? `<div class="ad-contact">${ad.footer}</div>` : ''}
+                ${questionsHtml}
+            `;
+            teil2PairsContainer.appendChild(card);
+        });
+    }
+
+    // Render Teil 3 texts
+    if (teil3QuestionsContainer) {
+        teil3Texts.forEach(t => {
+            const card = document.createElement('div');
+            card.className = 'text-box';
+            card.innerHTML = `
+                <div class="text-box-badge">${t.id}</div>
+                <div class="text-box-content">${t.text}</div>
+                <div class="text-box-select">
+                    <label>Bild Nr.:</label>
+                    <select id="teil3-select-${t.id}">
+                        <option value="">- ? -</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <span id="teil3-feedback-${t.id}" class="feedback-msg"></span>
+                </div>
+            `;
+            teil3QuestionsContainer.appendChild(card);
+        });
+    }
+
+    let hasSubmitted = false; // Prevent duplicate submissions
+
+    function showResultModal(score, total, examName, skipSend = false) {
+        const participantName = localStorage.getItem('studentName') || '';
+        const participantEmail = localStorage.getItem('studentEmail') || '';
+
+        const modal = document.getElementById('result-modal');
+        const overlay = document.getElementById('modal-overlay');
+        const scoreText = document.getElementById('modal-score');
+        const modalTitle = document.getElementById('modal-title');
+
+        if (modalTitle) modalTitle.textContent = 'Abgeschlossen';
+        scoreText.textContent = 'Vielen Dank! Ihre Antworten wurden übermittelt.';
+        scoreText.style.color = 'var(--primary)';
+        scoreText.style.fontSize = '1rem';
+
+        modal.style.display = 'block';
+        overlay.style.display = 'block';
+
+        if (!skipSend && !hasSubmitted && participantName && participantEmail && SCRIPT_URL !== 'IHRE_APPS_SCRIPT_URL_HIER') {
+            hasSubmitted = true;
+            sendResultToSheet({
+                timestamp: new Date().toISOString(),
+                name: participantName,
+                email: participantEmail,
+                score: score
+            });
+        }
+
+        // disable all actionable controls after submit (single button scenario)
+        document.getElementById('check-btn-all')?.setAttribute('disabled', 'true');
+        document.querySelectorAll('#questions-container select').forEach(sel => sel.setAttribute('disabled', 'true'));
+        document.querySelectorAll('#teil2-pairs input[type="radio"]').forEach(r => r.setAttribute('disabled', 'true'));
+        document.querySelectorAll('#teil3-questions select').forEach(sel => sel.setAttribute('disabled', 'true'));
+    }
+
+    function checkAnswers() {
+        let score = 0;
+        let allAnswered = true;
+npo
+        questions.forEach(q => {
+            const select = document.getElementById(`select-${q.id}`);
+            const userVal = parseInt(select.value);
+            const feedback = document.getElementById(`feedback-${q.id}`);
+            
+            // Reset styles
+            select.classList.remove('correct', 'incorrect');
+            feedback.innerHTML = '';
+
+            if (!userVal) {
+                allAnswered = false;
+            }
+
+            if (userVal === q.correct) {
+                score++;
+                select.classList.add('correct');
+                feedback.innerHTML = '✓ Richtig';
+                feedback.className = 'feedback-msg text-correct';
+            } else if (userVal) {
+                select.classList.add('incorrect');
+                feedback.innerHTML = `✗ (Lösung: ${q.correct})`;
+                feedback.className = 'feedback-msg text-error';
+            }
+        });
+
+        if (!allAnswered && score === 0) {
+            alert("Bitte wählen Sie für jede Situation eine Anzeige aus.");
+            return;
+        }
+
+        showResultModal(score, questions.length, EXAM_NAME);
+    }
+
+    function checkTeil2() {
+        let score = 0;
+        let allAnswered = true;
+
+        teil2Questions.forEach(q => {
+            const selected = document.querySelector(`input[name="yn-${q.id}"]:checked`);
+            const card = document.getElementById(`yn-card-${q.id}`);
+            const feedback = document.getElementById(`yn-feedback-${q.id}`);
+
+            card.classList.remove('correct', 'incorrect');
+            if (feedback) feedback.textContent = '';
+
+            if (!selected) {
+                allAnswered = false;
+                return;
+            }
+
+            const userVal = selected.value === 'true';
+            const isCorrect = userVal === q.correct;
+            if (isCorrect) {
+                score++;
+                card.classList.add('correct');
+                if (feedback) {
+                    feedback.textContent = '✓ Richtig';
+                    feedback.className = 'feedback-msg text-correct';
+                }
+            } else {
+                card.classList.add('incorrect');
+                if (feedback) {
+                    feedback.textContent = `✗ (Lösung: ${q.correct ? 'JA' : 'NEIN'})`;
+                    feedback.className = 'feedback-msg text-error';
+                }
+            }
+        });
+
+        if (!allAnswered && score === 0) {
+            alert('Bitte beantworten Sie jede Frage mit JA oder NEIN.');
+            return;
+        }
+
+        showResultModal(score, teil2Questions.length, EXAM_NAME_PART2);
+    }
+
+    function checkAll() {
+        // Warn user before final submit
+        if (!confirm('Warning: Once you submit, you cannot change your answers. Do you want to continue?')) {
+            return;
+        }
+
+        // Teil 1
+        let score1 = 0;
+        let all1 = true;
+        questions.forEach(q => {
+            const select = document.getElementById(`select-${q.id}`);
+            const userVal = parseInt(select.value);
+            if (!userVal) all1 = false;
+            if (userVal === q.correct) {
+                score1++;
+            }
+        });
+        if (!all1 && score1 === 0) {
+            alert('Bitte wählen Sie für jede Situation eine Anzeige aus.');
+            return;
+        }
+
+        // Teil 2
+        let score2 = 0;
+        let all2 = true;
+        teil2Questions.forEach(q => {
+            const selected = document.querySelector(`input[name="yn-${q.id}"]:checked`);
+            if (!selected) { all2 = false; return; }
+            const userVal = selected.value === 'true';
+            const isCorrect = userVal === q.correct;
+            if (isCorrect) {
+                score2++;
+            }
+        });
+        if (!all2 && score2 === 0) {
+            alert('Bitte beantworten Sie jede Frage mit JA oder NEIN.');
+            return;
+        }
+
+        // Teil 3
+        let score3 = 0;
+        let all3 = true;
+        teil3Texts.forEach(t => {
+            const select = document.getElementById(`teil3-select-${t.id}`);
+            const userVal = parseInt(select.value);
+            if (!userVal) { all3 = false; return; }
+            if (userVal === t.correct) {
+                score3++;
+            }
+        });
+        if (!all3 && score3 === 0) {
+            alert('Bitte wählen Sie für jeden Text eine Bildnummer aus.');
+            return;
+        }
+
+        // Scoring tables based on number of correct answers
+        // Aufgabe 1 & 3 (5 questions): 5→10, 4→8, 3→6, 2→4, 1→2, 0→0
+        const score5Table = [0, 2, 4, 6, 8, 10];
+        // Aufgabe 2 (6 questions): 6→10, 5→8, 4→6, 3→4, 2→2, 1-0→0
+        const score6Table = [0, 0, 2, 4, 6, 8, 10];
+
+        const points1 = score5Table[score1] || 0;
+        const points2 = score6Table[score2] || 0;
+        const points3 = score5Table[score3] || 0;
+        const totalScore = points1 + points2 + points3;
+
+        // lock everything
+        document.getElementById('check-btn-all')?.setAttribute('disabled', 'true');
+        document.querySelectorAll('#questions-container select').forEach(sel => sel.setAttribute('disabled', 'true'));
+        document.querySelectorAll('#teil2-pairs input[type="radio"]').forEach(r => r.setAttribute('disabled', 'true'));
+        document.querySelectorAll('#teil3-questions select').forEach(sel => sel.setAttribute('disabled', 'true'));
+
+        showResultModal(totalScore, 30, 'Lesen');
+    }
+
+    function sendResultToSheet(payload) {
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload)
+        }).catch(() => {
+            console.warn('Konnte Ergebnis nicht an Google Sheet senden.');
+        });
+    }
+
+    function closeModal() {
+        document.getElementById('result-modal').style.display = 'none';
+        document.getElementById('modal-overlay').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

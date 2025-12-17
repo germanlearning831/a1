@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start · Lesen Teil 1</title>
+  <style>
+    :root {
+      --primary: #2f2a24;
+      --accent: #8a7c6a;
+      --bg: #f6f1e7;
+      --card: #fffdf8;
+    }
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+    }
+    header {
+      background: linear-gradient(180deg, #fdfbf7 0%, #f3ecdf 100%);
+      padding: 1.25rem 1.2rem 1rem;
+      border-bottom: 1px solid #d8cdbd;
+    }
+    header h1 { margin: 0; font-size: 1.2rem; font-weight: 700; }
+    header p { margin: 0.35rem 0 0; font-size: 0.95rem; color: #4d4336; }
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 1.4rem 1rem 2rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid #d8cdbd;
+      border-radius: 8px;
+      padding: 1.2rem 1.1rem 1.4rem;
+      box-sizing: border-box;
+    }
+    label { display: block; margin-bottom: 0.35rem; font-weight: 700; font-size: 0.95rem; }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #b6aa98;
+      border-radius: 5px;
+      background: #fffef9;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    input:focus { outline: none; border-color: var(--accent); }
+    .field { margin-bottom: 1rem; }
+    button {
+      background: #3f382f;
+      color: #fffef9;
+      border: 1px solid #2f2a24;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    button:active { transform: scale(0.985); background: #2f2a24; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #fffef9;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hint { margin-top: 0.6rem; color: #514635; font-size: 0.9rem; }
+    .error { color: #b24a3a; font-size: 0.9rem; margin-top: 0.4rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lesen Teil 1</h1>
+    <p>Bitte Name und E-Mail eintragen, dann Prüfung starten.</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="email">E-Mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" />
+      </div>
+      <div id="error" class="error" style="display:none"></div>
+      <button id="start-btn">Prüfung starten</button>
+      <div class="hint">Die Daten werden in Google Sheets gespeichert.</div>
+    </div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwfFt-UvF6zcLwDTu3K7UjPdu0rDDWtOPQwTA8RJ1hfd4GHwoggdily7HTxq9JVIX_Dsg/exec';
+    
+
+    document.getElementById('start-btn').addEventListener('click', async () => {
+      const btn = document.getElementById('start-btn');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const errorBox = document.getElementById('error');
+
+      if (!name || !email) {
+        errorBox.textContent = 'Bitte Name und E-Mail eintragen.';
+        errorBox.style.display = 'block';
+        return;
+      }
+      errorBox.style.display = 'none';
+
+      // Disable button and show loading spinner
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Wird geladen...';
+
+      // Lokale Speicherung für Prüfungsseite
+      localStorage.setItem('studentName', name);
+      localStorage.setItem('studentEmail', email);
+
+      // Weiter zur Prüfung (no start entry sent to sheet)
+      window.location.href = 'lesen%20teil1.html';
+    });
+  </script>
+</body>
+</html>
